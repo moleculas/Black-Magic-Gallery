@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import Navbar from './Navbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles } from '@material-ui/core'
@@ -10,6 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { useCookies } from "react-cookie"
 import { sha256 } from 'js-sha256'
+import { GalleryContext } from '../context/GalleryProvider'
 
 const estilos = makeStyles(theme => ({
     root: {
@@ -30,13 +31,15 @@ const estilos = makeStyles(theme => ({
 
 const Contenedor = () => {
 
+    const { direccion } = useContext(GalleryContext)
+
     const classes = estilos()
     const [currentImage, setCurrentImage] = useState(0)
     const [viewerIsOpen, setViewerIsOpen] = useState(false)
     const [texto, setTexto] = useState('')
     const [contador, setContador] = useState(0)
     const [conjuro, setConjuro] = useState('')
-    const [cookies, setCookie] = useCookies(["user"])
+    const [cookies, setCookie] = useCookies(["user"])    
 
     const openLightbox = useCallback((event, { photo, index }) => {
         setCurrentImage(index);
@@ -89,7 +92,7 @@ const Contenedor = () => {
             <div className={classes.content} onMouseOver={(e) =>
                 escribeTexto(e)}>
                 <div className={classes.toolbar}></div>
-                <Gallery photos={photos} onClick={openLightbox} direction={"column"} />
+                <Gallery photos={photos} onClick={openLightbox} direction={direccion} />
                 <ModalGateway>
                     {viewerIsOpen ? (
                         <Modal onClose={closeLightbox}>
