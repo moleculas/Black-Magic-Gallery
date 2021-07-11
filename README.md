@@ -1,6 +1,6 @@
 # Black Magic Gallery 
 
-Componente para Galería de imágenes tipo masonry desarrollado con con [React](https://es.reactjs.org/) estilizado con [Material-UI](https://material-ui.com/).
+Componente para Galería de imágenes tipo masonry desarrollado con [React](https://es.reactjs.org/) estilizado con [Material-UI](https://material-ui.com/).
 
 ## Demo
 
